@@ -1,0 +1,64 @@
+[gd_scene load_steps=6 format=3 uid="uid://bswrr3pn88m20"]
+
+[ext_resource type="Script" path="res://escenabonos.gd" id="1_luyg5"]
+[ext_resource type="Texture2D" uid="uid://dp3txc13lopi6" path="res://bonos/DALL_E_2024-10-06_15.55.48_-_Three_pixel_art_buttons_styled_as_bonds_for_a_finance_game._Each_button_should_represent_a_different_bond_option_with_the_following_interest_rates__3__-_copia__3__-_copia-.png" id="2_pgest"]
+[ext_resource type="Texture2D" uid="uid://bvkbqw8plvqeg" path="res://bonos/DALL_E_2024-10-06_15.55.48_-_Three_pixel_art_buttons_styled_as_bonds_for_a_finance_game._Each_button_should_represent_a_different_bond_option_with_the_following_interest_rates__3__-_copia__2_-removebg.png" id="3_mq5jt"]
+[ext_resource type="Texture2D" uid="uid://grpwfnnboxjv" path="res://bonos/DALL_E_2024-10-06_15.55.48_-_Three_pixel_art_buttons_styled_as_bonds_for_a_finance_game._Each_button_should_represent_a_different_bond_option_with_the_following_interest_rates__3__-_copia__2__-_copia-.png" id="4_km074"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8jpin"]
+bg_color = Color(0.129412, 0.568627, 0.196078, 1)
+
+[node name="Escenabonos" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_luyg5")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -237.0
+offset_top = -222.0
+offset_right = 237.0
+offset_bottom = 222.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = -7
+alignment = 1
+
+[node name="Bono1" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_constants/outline_size = 0
+icon = ExtResource("2_pgest")
+
+[node name="Bono2" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_constants/outline_size = 0
+icon = ExtResource("3_mq5jt")
+
+[node name="Bono3" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_constants/outline_size = 0
+icon = ExtResource("4_km074")
+
+[node name="ProgressBar" type="ProgressBar" parent="."]
+layout_mode = 0
+offset_right = 290.0
+offset_bottom = 33.0
+theme_override_styles/background = SubResource("StyleBoxFlat_8jpin")
+
+[node name="LabelResultados" type="Label" parent="."]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+
+[connection signal="pressed" from="VBoxContainer/Bono1" to="." method="_on_bono_1_pressed"]
+[connection signal="pressed" from="VBoxContainer/Bono2" to="." method="_on_bono_2_pressed"]
+[connection signal="pressed" from="VBoxContainer/Bono3" to="." method="_on_bono_3_pressed"]

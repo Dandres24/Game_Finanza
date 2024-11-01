@@ -1,0 +1,70 @@
+[gd_scene load_steps=6 format=3 uid="uid://bswrr3pn88m20"]
+
+[ext_resource type="Script" path="res://escenabonos.gd" id="1_luyg5"]
+[ext_resource type="Texture2D" uid="uid://dp3txc13lopi6" path="res://bonos/DALL_E_2024-10-06_15.55.48_-_Three_pixel_art_buttons_styled_as_bonds_for_a_finance_game._Each_button_should_represent_a_different_bond_option_with_the_following_interest_rates__3__-_copia__3__-_copia-.png" id="2_pgest"]
+[ext_resource type="Texture2D" uid="uid://bvkbqw8plvqeg" path="res://bonos/DALL_E_2024-10-06_15.55.48_-_Three_pixel_art_buttons_styled_as_bonds_for_a_finance_game._Each_button_should_represent_a_different_bond_option_with_the_following_interest_rates__3__-_copia__2_-removebg.png" id="3_mq5jt"]
+[ext_resource type="Texture2D" uid="uid://grpwfnnboxjv" path="res://bonos/DALL_E_2024-10-06_15.55.48_-_Three_pixel_art_buttons_styled_as_bonds_for_a_finance_game._Each_button_should_represent_a_different_bond_option_with_the_following_interest_rates__3__-_copia__2__-_copia-.png" id="4_km074"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8jpin"]
+bg_color = Color(0.129412, 0.568627, 0.196078, 1)
+shadow_color = Color(1, 1, 1, 0.6)
+
+[node name="Escenabonos" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_luyg5")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="ProgressBar" type="ProgressBar" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 4
+theme_override_font_sizes/font_size = 64
+theme_override_styles/background = SubResource("StyleBoxFlat_8jpin")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 7
+alignment = 1
+
+[node name="bono1" type="Button" parent="VBoxContainer/HBoxContainer"]
+layout_mode = 2
+icon = ExtResource("2_pgest")
+
+[node name="bono2" type="Button" parent="VBoxContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_constants/outline_size = 0
+icon = ExtResource("3_mq5jt")
+
+[node name="bono3" type="Button" parent="VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_constants/outline_size = 0
+icon = ExtResource("4_km074")
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 0
+offset_left = 450.0
+offset_top = 109.0
+offset_right = 935.0
+offset_bottom = 481.0
+
+[node name="LabelResultados" type="Label" parent="Panel"]
+layout_mode = 2
+offset_left = -487.0
+offset_top = 98.0
+offset_right = 942.0
+offset_bottom = 177.0
+theme_override_font_sizes/font_size = 58
+
+[connection signal="ready" from="VBoxContainer/ProgressBar" to="." method="_on_progress_bar_ready"]
+[connection signal="pressed" from="VBoxContainer/HBoxContainer/bono1" to="." method="_on_bono_1_pressed"]
+[connection signal="pressed" from="VBoxContainer/HBoxContainer/bono2" to="." method="_on_bono_2_pressed"]
+[connection signal="pressed" from="VBoxContainer/HBoxContainer/bono3" to="." method="_on_bono_3_pressed"]

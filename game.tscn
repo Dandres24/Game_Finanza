@@ -1,0 +1,24 @@
+[gd_scene load_steps=4 format=3 uid="uid://ldbnhtdnypxy"]
+
+[ext_resource type="Texture2D" uid="uid://cs8bow0xa5amh" path="res://fondo/fondo 2 - copia - copia.png" id="1_7cdls"]
+[ext_resource type="PackedScene" uid="uid://x8hitbjcgjch" path="res://estante.tscn" id="3_5sbrw"]
+[ext_resource type="PackedScene" uid="uid://caga6qkrp8flr" path="res://contador.tscn" id="3_rygoq"]
+
+[node name="Game" type="Node"]
+
+[node name="fondo" type="Sprite2D" parent="."]
+position = Vector2(663, 276)
+scale = Vector2(0.746094, 0.709961)
+texture = ExtResource("1_7cdls")
+
+[node name="fondo" type="Sprite2D" parent="fondo"]
+position = Vector2(1410.01, 2.81706)
+scale = Vector2(0.831536, 1.00147)
+texture = ExtResource("1_7cdls")
+
+[node name="estante" parent="." instance=ExtResource("3_5sbrw")]
+position = Vector2(1060, 587)
+scale = Vector2(0.2355, 0.2265)
+
+[node name="Jugador1" parent="." instance=ExtResource("3_rygoq")]
+position = Vector2(46, 638)

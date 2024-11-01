@@ -1,0 +1,111 @@
+[gd_scene load_steps=11 format=3 uid="uid://caga6qkrp8flr"]
+
+[ext_resource type="Script" path="res://jugador_1.gd" id="1_bhprm"]
+[ext_resource type="Texture2D" uid="uid://drvm5g3mrtm53" path="res://contador/corrected_frame_1 (1).png" id="2_x32tp"]
+[ext_resource type="Texture2D" uid="uid://cfftsv2in4yqv" path="res://contador/corrected_frame_1 (2).png" id="3_0upxy"]
+[ext_resource type="Texture2D" uid="uid://ek3eba4n4nkx" path="res://contador/corrected_frame_5.png" id="4_26fdw"]
+[ext_resource type="Texture2D" uid="uid://6qq48l8fwmu5" path="res://contador/corrected_frame_6.png" id="5_cgi7p"]
+[ext_resource type="Texture2D" uid="uid://bju7e4ui43bnt" path="res://contador/corrected_frame_10.png" id="6_1vuhu"]
+[ext_resource type="Texture2D" uid="uid://cqipqu8q0n1hu" path="res://contador/DALL_E_2024-09-18_12.24.02_-_Pixel_art_character_of_an_accountant__displayed_in_front__back__and_side_views__with_a_complete_side_view__full_body_visible__without_any_cuts._The_ac-removebg-preview (1).png" id="7_f5jda"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_va6mt"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_x32tp")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_x32tp")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_0upxy")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_26fdw")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_cgi7p")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_1vuhu")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_x32tp")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_0upxy")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_26fdw")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_cgi7p")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_1vuhu")
+}],
+"loop": true,
+"name": &"run",
+"speed": 7.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_solf3"]
+size = Vector2(76.875, 186.5)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_rqnpr"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("7_f5jda")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_f5jda")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_f5jda")
+}],
+"loop": true,
+"name": &"up",
+"speed": 5.0
+}]
+
+[node name="Jugador1" type="CharacterBody2D"]
+script = ExtResource("1_bhprm")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(12, -43)
+scale = Vector2(0.543785, 0.471463)
+sprite_frames = SubResource("SpriteFrames_va6mt")
+animation = &"run"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(9, -40)
+scale = Vector2(0.533333, 0.437179)
+shape = SubResource("RectangleShape2D_solf3")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(11, -42.375)
+scale = Vector2(0.533333, 0.437179)
+position_smoothing_enabled = true
+
+[node name="AnimatedSprite2D_Up" type="AnimatedSprite2D" parent="."]
+visible = false
+position = Vector2(8, -43)
+scale = Vector2(0.152966, 0.114677)
+sprite_frames = SubResource("SpriteFrames_rqnpr")
+animation = &"up"
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="."]
+position = Vector2(9, -40)
+scale = Vector2(0.533333, 0.437179)
+shape = SubResource("RectangleShape2D_solf3")
+
+[node name="Camera2D2" type="Camera2D" parent="."]
+position = Vector2(11, -42.375)
+scale = Vector2(0.533333, 0.437179)
+position_smoothing_enabled = true

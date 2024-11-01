@@ -1,0 +1,163 @@
+[gd_scene load_steps=5 format=3 uid="uid://wh6p4xgd0pm"]
+
+[ext_resource type="Texture2D" uid="uid://uil8sf75gry1" path="res://bonos/DALL_E_2024-10-06_19.05.52_-_Four_frames_of_a_pixel_art_style_button_labeled__Invertir___showing_a_frontal_animation_sequence._The_button_has_a_rectangular_shape_with_rounded_edge-removebg-preview.png" id="2_u2pax"]
+[ext_resource type="Texture2D" uid="uid://bvmx50em3bo0f" path="res://bonos/muestra_mensaje2.png" id="3_oitqx"]
+
+[sub_resource type="GDScript" id="GDScript_3wkaa"]
+script/source = "extends Control
+
+@onready var boton_invertir = $BotonInvertir
+@onready var dialogo_fondo = $VBoxContainer/DialogoFondo
+@onready var dialogo_label = $VBoxContainer/DialogoFondo/DialogoLabel
+@onready var label_pregunta = $LabelPregunta
+@onready var input_cantidad = $InputCantidad
+@onready var confirm_button = $ConfirmButton
+
+var cantidad_invertir = 0
+var texto_completo = \"\"
+var indice_letra = 0
+
+signal finalizado
+
+func _ready():
+	dialogo_fondo.visible = false   # Esconder el cuadro de diálogo al inicio
+	label_pregunta.visible = false  # Esconder el Label de pregunta al inicio
+	input_cantidad.visible = false  # Esconder el input de cantidad al inicio
+	confirm_button.visible = false  # Esconder el botón de confirmación al inicio
+
+	# Conectar la señal desde escenabonos para reiniciar el botón de invertir
+	var escenabonos = get_parent().get_node(\"Escenabonos\")
+	if escenabonos != null:
+		escenabonos.connect(\"reactivar_invertir\", self, \"_reactivar_boton_invertir\")
+	else:
+		print(\"Error: escenabonos no se encontró.\")
+
+# Función para iniciar el diálogo con el texto deseado
+func mostrar_dialogo(texto: String):
+	dialogo_fondo.visible = true
+	texto_completo = texto
+	indice_letra = 0
+	dialogo_label.visible = true
+	dialogo_label.text = \"\"
+	empezar_escritura()
+
+# Función para desplegar texto gradualmente
+func empezar_escritura():
+	if indice_letra < texto_completo.length():
+		dialogo_label.text += texto_completo[indice_letra]
+		indice_letra += 1
+		await get_tree().create_timer(0.05).timeout  # Controla la velocidad de aparición de cada letra
+		empezar_escritura()
+	else:
+		await get_tree().create_timer(2.0).timeout  # Tiempo para que el jugador lea
+		mostrar_input()  # Mostrar el input y botón de confirmación
+
+# Al presionar el botón de invertir, se muestra el diálogo explicativo o se vuelve a permitir invertir
+func _on_boton_invertir_pressed() -> void:
+	boton_invertir.visible = false
+	if get_parent().get_node(\"Escenabonos\").panel_resultados.visible:
+		get_parent().get_node(\"Escenabonos\").panel_resultados.visible = false  # Oculta el panel de resultados para la siguiente inversión
+		mostrar_input()
+	else:
+		mostrar_dialogo(\"Este es el Edificio de Bonos. Aquí puedes invertir en bonos, que son una forma de préstamo donde tú le prestas dinero a una empresa o gobierno. A cambio, recibes intereses, es decir, ganancias adicionales con el tiempo. ¡Es una manera segura de hacer crecer tu dinero mientras apoyas proyectos importantes!\")
+
+# Función para mostrar el input y el botón de confirmación después del diálogo
+func mostrar_input():
+	dialogo_label.visible = false  # Ocultar el texto cuando aparecen el input y el botón
+	label_pregunta.text = \"¿Qué cantidad de dinero deseas invertir?\"  # Texto de la pregunta
+	label_pregunta.visible = true  # Mostrar el Label de pregunta
+	input_cantidad.visible = true
+	confirm_button.visible = true
+
+# Al confirmar, se captura la cantidad y se emite la señal para cambiar de escena
+func _on_confirm_button_pressed() -> void:
+	cantidad_invertir = input_cantidad.text.to_int()
+	print(\"Cantidad a invertir: \", cantidad_invertir)
+	emit_signal(\"finalizado\", cantidad_invertir)  # Emite la señal con la cantidad de inversión
+	queue_free()  # Elimina la escena de interacción
+
+# Función para reactivar el botón de invertir cuando se permite una nueva inversión
+func _reactivar_boton_invertir():
+	boton_invertir.visible = true
+"
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_yi54m"]
+
+[node name="InteraccionBonos" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 49.0
+offset_top = 6.0
+grow_horizontal = 2
+grow_vertical = 2
+script = SubResource("GDScript_3wkaa")
+
+[node name="BotonInvertir" type="Button" parent="."]
+layout_mode = 0
+offset_left = 440.0
+offset_top = -4.0
+offset_right = 954.0
+offset_bottom = 381.0
+theme_override_styles/normal = SubResource("StyleBoxFlat_yi54m")
+icon = ExtResource("2_u2pax")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 0
+offset_left = -2993.0
+offset_top = 2038.0
+offset_right = -2357.0
+offset_bottom = 2293.0
+scale = Vector2(11.0873, 8.46896)
+
+[node name="DialogoFondo" type="TextureRect" parent="VBoxContainer"]
+layout_mode = 2
+texture = ExtResource("3_oitqx")
+
+[node name="DialogoLabel" type="RichTextLabel" parent="VBoxContainer/DialogoFondo"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -318.0
+offset_top = -43.5
+offset_right = 318.0
+offset_bottom = 43.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="LabelPregunta" type="Label" parent="."]
+layout_mode = 2
+offset_left = -809.0
+offset_top = 2129.0
+offset_right = 1728.0
+offset_bottom = 2435.0
+theme_override_font_sizes/font_size = 129
+text = "¿Qué cantidad de dinero deseas invertir?"
+
+[node name="InputCantidad" type="LineEdit" parent="."]
+layout_mode = 2
+offset_left = -243.0
+offset_top = 2463.0
+offset_right = 393.0
+offset_bottom = 2561.0
+scale = Vector2(2.16, 2.16)
+theme_override_font_sizes/font_size = 65
+virtual_keyboard_type = 2
+
+[node name="ConfirmButton" type="Button" parent="."]
+layout_mode = 2
+offset_left = -4.99998
+offset_top = 2747.0
+offset_right = 631.0
+offset_bottom = 2823.0
+scale = Vector2(1.51653, 2.91887)
+theme_override_font_sizes/font_size = 49
+text = "confirmar
+"
+
+[connection signal="pressed" from="BotonInvertir" to="." method="_on_boton_invertir_pressed"]
+[connection signal="pressed" from="ConfirmButton" to="." method="_on_confirm_button_pressed"]

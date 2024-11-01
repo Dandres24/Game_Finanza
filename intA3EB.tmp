@@ -1,0 +1,127 @@
+[gd_scene load_steps=4 format=3 uid="uid://bsrfwr0x2bxdr"]
+
+[ext_resource type="Texture2D" uid="uid://bvmx50em3bo0f" path="res://bonos/muestra_mensaje2.png" id="1_eghnj"]
+[ext_resource type="Script" path="res://interaccion_fondos_mutuos.gd" id="1_qbcls"]
+[ext_resource type="Texture2D" uid="uid://uil8sf75gry1" path="res://bonos/DALL_E_2024-10-06_19.05.52_-_Four_frames_of_a_pixel_art_style_button_labeled__Invertir___showing_a_frontal_animation_sequence._The_button_has_a_rectangular_shape_with_rounded_edge-removebg-preview.png" id="2_j6ivw"]
+
+[node name="InteraccionFondosMutuos" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 1.0
+offset_top = 3.0
+offset_right = 1.0
+offset_bottom = 3.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_qbcls")
+
+[node name="BotonInvertir" type="Button" parent="."]
+layout_mode = 0
+offset_left = 49.0
+offset_top = 80.0
+offset_right = 563.0
+offset_bottom = 465.0
+scale = Vector2(0.18831, 0.16)
+icon = ExtResource("2_j6ivw")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="BotonRentaFija" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+text = "Fondo de Renta Fija"
+
+[node name="BotonRentaVariable" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_font_sizes/font_size = 14
+text = "Fondo De Renta Variable "
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="."]
+layout_mode = 0
+offset_left = -330.0
+offset_top = 371.0
+offset_right = 306.0
+offset_bottom = 529.0
+scale = Vector2(1.38217, 1.24)
+
+[node name="TextureRect" type="TextureRect" parent="VBoxContainer2"]
+layout_mode = 2
+texture = ExtResource("1_eghnj")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="VBoxContainer2/TextureRect"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -318.0
+offset_top = -60.0
+offset_right = 318.0
+offset_bottom = 60.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="PlazoOptionButton" type="OptionButton" parent="VBoxContainer2/TextureRect"]
+layout_mode = 2
+offset_left = 55.7096
+offset_top = 47.5806
+offset_right = 567.71
+offset_bottom = 72.5806
+theme_override_font_sizes/font_size = 15
+allow_reselect = true
+item_count = 3
+popup/item_0/text = "Corto Plazo"
+popup/item_1/text = "Mediano Plazo"
+popup/item_1/id = 1
+popup/item_2/text = "Largo Plazo"
+popup/item_2/id = 2
+
+[node name="Confirmarplazo" type="Button" parent="VBoxContainer2/TextureRect"]
+layout_mode = 2
+offset_left = 219.221
+offset_top = 82.258
+offset_right = 380.221
+offset_bottom = 113.258
+text = "CONFIRMAR"
+
+[node name="InputRentaFija" type="LineEdit" parent="VBoxContainer2/TextureRect"]
+layout_mode = 2
+offset_left = 197.516
+offset_top = 45.9678
+offset_right = 408.516
+offset_bottom = 78.9678
+virtual_keyboard_type = 2
+
+[node name="ConfirmarInversion" type="Button" parent="VBoxContainer2/TextureRect"]
+layout_mode = 0
+offset_left = 245.267
+offset_top = 83.0645
+offset_right = 358.267
+offset_bottom = 114.064
+text = "CONFIRMAR"
+
+[node name="LabelCantidad" type="Label" parent="."]
+layout_mode = 0
+offset_left = -98.0
+offset_top = 390.0
+offset_right = -58.0
+offset_bottom = 413.0
+
+[node name="LabelPlazo" type="Label" parent="."]
+layout_mode = 0
+offset_left = -89.0
+offset_top = 391.0
+offset_right = -49.0
+offset_bottom = 414.0
+
+[connection signal="pressed" from="BotonInvertir" to="." method="_on_boton_invertir_pressed"]
+[connection signal="pressed" from="VBoxContainer/BotonRentaFija" to="." method="_on_boton_renta_fija_pressed"]
+[connection signal="pressed" from="VBoxContainer/BotonRentaVariable" to="." method="_on_boton_renta_variable_pressed"]
+[connection signal="pressed" from="VBoxContainer2/TextureRect/Confirmarplazo" to="." method="_on_confirmarplazo_pressed"]
+[connection signal="pressed" from="VBoxContainer2/TextureRect/ConfirmarInversion" to="." method="_on_confirmar_inversion_pressed"]

@@ -1,0 +1,116 @@
+[gd_scene load_steps=16 format=3 uid="uid://df2oljwkhnhvg"]
+
+[ext_resource type="Texture2D" uid="uid://00ubritsu1tf" path="res://fondo/Gemini_Generated_Image_dgs6c2dgs6c2dgs6-removebg-preview.png" id="1_7d8nh"]
+[ext_resource type="Script" path="res://escena_inversion.gd" id="1_j8pk3"]
+[ext_resource type="Texture2D" uid="uid://wj4a4w7kyc" path="res://fondo/inversion.jpg" id="2_0lmqo"]
+[ext_resource type="Texture2D" uid="uid://ci3nl87b8yns0" path="res://fondo/Gemini_Generated_Image_5iw8oy5iw8oy5iw8-removebg-preview.png" id="2_gpnst"]
+[ext_resource type="Texture2D" uid="uid://bh1ce4ouyw2uu" path="res://fondo/actions.png" id="5_mdxap"]
+[ext_resource type="Texture2D" uid="uid://x8f2eallxy6t" path="res://fondo/edificio_cripto-removebg-preview.png" id="6_hj8h6"]
+[ext_resource type="Texture2D" uid="uid://bw7fjtsdb0uqv" path="res://fondo/Real estate.png" id="7_cb2lt"]
+[ext_resource type="PackedScene" uid="uid://nih0qdi28hs" path="res://portal2.tscn" id="8_al1n5"]
+[ext_resource type="PackedScene" uid="uid://caga6qkrp8flr" path="res://contador.tscn" id="8_vfa8k"]
+[ext_resource type="PackedScene" uid="uid://bswrr3pn88m20" path="res://escenabonos.tscn" id="10_4knfd"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_iwj2n"]
+size = Vector2(288.163, 407.537)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_pors1"]
+size = Vector2(340.102, 398.437)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_kyhsk"]
+size = Vector2(341.21, 460.63)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6auoj"]
+size = Vector2(359.277, 362.715)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_2u50l"]
+size = Vector2(348.816, 421.191)
+
+[node name="escena_inversion" type="Node2D"]
+script = ExtResource("1_j8pk3")
+
+[node name="Inversion" type="Sprite2D" parent="."]
+position = Vector2(581.5, 249.5)
+scale = Vector2(0.565494, 0.446993)
+texture = ExtResource("2_0lmqo")
+
+[node name="Inversion" type="Sprite2D" parent="Inversion"]
+position = Vector2(2244.44, 32.215)
+scale = Vector2(1.20186, 0.962283)
+texture = ExtResource("2_0lmqo")
+
+[node name="Inversion" type="Sprite2D" parent="Inversion/Inversion"]
+position = Vector2(2244.44, 32.215)
+scale = Vector2(1.20186, 0.962283)
+texture = ExtResource("2_0lmqo")
+
+[node name="EdificioBonos" type="Sprite2D" parent="."]
+position = Vector2(743, 431)
+scale = Vector2(1.01431, 0.978)
+texture = ExtResource("1_7d8nh")
+
+[node name="Area2D" type="Area2D" parent="EdificioBonos"]
+position = Vector2(-90.874, 46.1825)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="EdificioBonos/Area2D"]
+position = Vector2(84.7132, -58.1007)
+shape = SubResource("RectangleShape2D_iwj2n")
+
+[node name="EdificioMutuos" type="Sprite2D" parent="."]
+position = Vector2(1291, 427)
+scale = Vector2(0.858625, 0.95)
+texture = ExtResource("2_gpnst")
+
+[node name="Area2D" type="Area2D" parent="EdificioMutuos"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="EdificioMutuos/Area2D"]
+position = Vector2(-5.49925, 20.8334)
+shape = SubResource("RectangleShape2D_pors1")
+
+[node name="EdificioAcciones" type="Sprite2D" parent="."]
+position = Vector2(1828, 437)
+scale = Vector2(0.9645, 0.832)
+texture = ExtResource("5_mdxap")
+
+[node name="Area2D" type="Area2D" parent="EdificioAcciones"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="EdificioAcciones/Area2D"]
+position = Vector2(-3.36162, 10.1744)
+scale = Vector2(1, 1)
+shape = SubResource("RectangleShape2D_kyhsk")
+
+[node name="EdificioCriptomonedas" type="Sprite2D" parent="."]
+position = Vector2(2366, 428)
+scale = Vector2(0.908, 1)
+texture = ExtResource("6_hj8h6")
+
+[node name="Area2D" type="Area2D" parent="EdificioCriptomonedas"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="EdificioCriptomonedas/Area2D"]
+position = Vector2(-3.53784, 17.5508)
+scale = Vector2(1, 1)
+shape = SubResource("RectangleShape2D_6auoj")
+
+[node name="EdificioInmobiliaria" type="Sprite2D" parent="."]
+position = Vector2(2910, 440)
+scale = Vector2(0.909071, 0.928734)
+texture = ExtResource("7_cb2lt")
+
+[node name="Area2D" type="Area2D" parent="EdificioInmobiliaria"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="EdificioInmobiliaria/Area2D"]
+position = Vector2(-5.47754, -3.05176e-05)
+shape = SubResource("RectangleShape2D_2u50l")
+
+[node name="portal" parent="." instance=ExtResource("8_al1n5")]
+position = Vector2(-370, 692)
+
+[node name="Jugador1" parent="." instance=ExtResource("8_vfa8k")]
+position = Vector2(279, 649)
+
+[node name="Escenabonos" parent="." instance=ExtResource("10_4knfd")]
+offset_left = 613.0
+offset_top = 408.0
+offset_right = 655.0
+offset_bottom = 408.0
+scale = Vector2(0.175675, 0.170385)

@@ -1,0 +1,118 @@
+[gd_scene load_steps=6 format=3 uid="uid://x8hitbjcgjch"]
+
+[ext_resource type="Texture2D" uid="uid://d2f27ix1ss756" path="res://estante/estante.png" id="1_rdeih"]
+[ext_resource type="Script" path="res://estante_area_2d.gd" id="2_emmkc"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_b6u41"]
+size = Vector2(515.229, 438.524)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bf53m"]
+bg_color = Color(0.0352941, 0.619608, 0.94902, 0.478431)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1klqo"]
+bg_color = Color(0, 0.756863, 0.486275, 0.984314)
+
+[node name="estante" type="Node2D"]
+position = Vector2(539, 407)
+scale = Vector2(0.394, 0.366)
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_rdeih")
+
+[node name="Area2D" type="Area2D" parent="Sprite2D"]
+position = Vector2(7.61414, -5.46448)
+script = ExtResource("2_emmkc")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Sprite2D/Area2D"]
+position = Vector2(-112.944, 7.51379)
+shape = SubResource("RectangleShape2D_b6u41")
+
+[node name="Panel" type="Panel" parent="Sprite2D/Area2D"]
+offset_left = -289.34
+offset_top = -721.312
+offset_right = 299.66
+offset_bottom = -216.312
+theme_override_styles/panel = SubResource("StyleBoxFlat_bf53m")
+
+[node name="Label" type="Label" parent="Sprite2D/Area2D/Panel"]
+layout_mode = 0
+offset_left = 33.2741
+offset_top = 5.15299
+offset_right = 556.274
+offset_bottom = 111.153
+theme_override_font_sizes/font_size = 40
+text = "¿Qué acción deseas tomar?"
+
+[node name="invest" type="Button" parent="Sprite2D/Area2D/Panel"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.24
+anchor_right = 0.5
+anchor_bottom = 0.24
+offset_left = -147.013
+offset_top = -20.4186
+offset_right = 147.987
+offset_bottom = 42.5814
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 40
+theme_override_styles/normal = SubResource("StyleBoxFlat_1klqo")
+text = "Invertir"
+
+[node name="Business" type="Button" parent="Sprite2D/Area2D/Panel"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.492
+anchor_top = 0.245
+anchor_right = 0.492
+anchor_bottom = 0.245
+offset_left = -144.839
+offset_top = 69.9525
+offset_right = 150.161
+offset_bottom = 132.953
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 40
+theme_override_styles/normal = SubResource("StyleBoxFlat_1klqo")
+text = "Crear Negocio"
+
+[node name="Education" type="Button" parent="Sprite2D/Area2D/Panel"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.24
+anchor_right = 0.5
+anchor_bottom = 0.24
+offset_left = -231.048
+offset_top = 165.685
+offset_right = 225.952
+offset_bottom = 228.685
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 40
+theme_override_styles/normal = SubResource("StyleBoxFlat_1klqo")
+text = "Educación Financiera"
+
+[node name="Advisor" type="Button" parent="Sprite2D/Area2D/Panel"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.24
+anchor_right = 0.5
+anchor_bottom = 0.24
+offset_left = -177.749
+offset_top = 261.314
+offset_right = 177.251
+offset_bottom = 324.314
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 40
+theme_override_styles/normal = SubResource("StyleBoxFlat_1klqo")
+text = "Ayuda de Asesor"
+
+[connection signal="body_entered" from="Sprite2D/Area2D" to="Sprite2D/Area2D" method="_on_body_entered"]
+[connection signal="pressed" from="Sprite2D/Area2D/Panel/invest" to="Sprite2D/Area2D" method="_on_invest_pressed"]
+[connection signal="pressed" from="Sprite2D/Area2D/Panel/Business" to="Sprite2D/Area2D" method="_on_business_pressed"]
+[connection signal="pressed" from="Sprite2D/Area2D/Panel/Education" to="Sprite2D/Area2D" method="_on_education_pressed"]
+[connection signal="pressed" from="Sprite2D/Area2D/Panel/Advisor" to="Sprite2D/Area2D" method="_on_advisor_pressed"]

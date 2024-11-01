@@ -1,0 +1,98 @@
+[gd_scene load_steps=3 format=3 uid="uid://creaykmr6dtg2"]
+
+[ext_resource type="Script" path="res://interracion_renta_variable.gd" id="1_gpvg2"]
+[ext_resource type="Texture2D" uid="uid://bvmx50em3bo0f" path="res://bonos/muestra_mensaje2.png" id="2_l0sb4"]
+
+[node name="interracion_renta_variable" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_gpvg2")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 0
+offset_left = -329.0
+offset_top = 372.0
+offset_right = 307.0
+offset_bottom = 653.0
+scale = Vector2(1.4, 1.2)
+theme_override_constants/separation = 10
+
+[node name="TextureRect" type="TextureRect" parent="VBoxContainer"]
+layout_mode = 2
+texture = ExtResource("2_l0sb4")
+
+[node name="dialog_text" type="RichTextLabel" parent="VBoxContainer/TextureRect"]
+layout_mode = 0
+offset_right = 632.0
+offset_bottom = 156.0
+
+[node name="CategoriaTecnologia" type="Button" parent="VBoxContainer/TextureRect"]
+layout_mode = 2
+offset_left = 55.7143
+offset_top = 48.3333
+offset_right = 230.714
+offset_bottom = 79.3333
+text = "Tecnología"
+
+[node name="CategoriaMedicina" type="Button" parent="VBoxContainer/TextureRect"]
+layout_mode = 2
+offset_left = 351.429
+offset_top = 46.6667
+offset_right = 505.429
+offset_bottom = 77.6667
+text = "Medicina"
+
+[node name="CategoriaEntretenimiento" type="Button" parent="VBoxContainer/TextureRect"]
+layout_mode = 2
+offset_left = 77.1429
+offset_top = 105.0
+offset_right = 212.143
+offset_bottom = 136.0
+text = "Entretenimiento"
+
+[node name="CategoriaNuevasEmpresas" type="Button" parent="VBoxContainer/TextureRect"]
+layout_mode = 2
+offset_left = 362.143
+offset_top = 102.5
+offset_right = 500.143
+offset_bottom = 133.5
+text = "Nuevas Empresa"
+
+[node name="LabelEstilo" type="Label" parent="VBoxContainer/TextureRect"]
+layout_mode = 0
+offset_left = 184.0
+offset_top = 13.0
+offset_right = 429.0
+offset_bottom = 41.0
+
+[node name="LabelCategoriaInversion" type="Label" parent="VBoxContainer/TextureRect"]
+layout_mode = 0
+offset_left = 143.571
+offset_top = 14.1667
+offset_right = 388.571
+offset_bottom = 42.1667
+
+[node name="Inputvariable" type="LineEdit" parent="VBoxContainer/TextureRect"]
+layout_mode = 0
+offset_left = 209.0
+offset_top = 48.0
+offset_right = 378.0
+offset_bottom = 79.0
+
+[node name="Inversionvariable" type="Button" parent="VBoxContainer/TextureRect"]
+layout_mode = 0
+offset_left = 242.857
+offset_top = 90.0
+offset_right = 345.857
+offset_bottom = 124.0
+text = "CONFIRMAR"
+
+[connection signal="pressed" from="VBoxContainer/TextureRect/CategoriaTecnologia" to="." method="_on_categoria_tecnologia_pressed"]
+[connection signal="pressed" from="VBoxContainer/TextureRect/CategoriaMedicina" to="." method="_on_categoria_medicina_pressed"]
+[connection signal="pressed" from="VBoxContainer/TextureRect/CategoriaEntretenimiento" to="." method="_on_categoria_entretenimiento_pressed"]
+[connection signal="pressed" from="VBoxContainer/TextureRect/CategoriaNuevasEmpresas" to="." method="_on_categoria_nuevas_empresas_pressed"]
+[connection signal="pressed" from="VBoxContainer/TextureRect/Inversionvariable" to="." method="_on_confirmar_inversion_buttonvariable_pressed"]
